@@ -17,12 +17,12 @@ app.use("/auth",userRouter)
 
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGODB_URI,{
+mongoose.connect(process.env.MONGODB_URI , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
   .then(() => {app.listen(PORT, () => {
-    console.log("Server is running on port 3001");
+    console.log(`Server started on port ${PORT}`);
   });
   }).catch((err)=>{
     console.log(err)
