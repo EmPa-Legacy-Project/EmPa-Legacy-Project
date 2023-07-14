@@ -20,15 +20,17 @@ const Register = () => {
         username,
         password,
       });
-      
-      if (response.data.username === username) {
+      console.log(response.data.username)
+      console.log(username,1)
+      console.log(response.data.message)
+      if (response.data.username!==username) {///not working fix
         setCookies("access-token", response.data.token);
         window.localStorage.setItem("EmPa token", response.data.token);
-        alert("Registration Completed! ");
+        alert("Registration Completed! ");console.log(1)
         navigate("/add");
       } else {
         alert("If you already have an account please login");
-        navigate("/Login");
+        //navigate("/Login");
       }
     } catch (error) {
       console.log(error);

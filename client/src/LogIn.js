@@ -25,7 +25,7 @@ function Login() {
         window.localStorage.setItem("EmPa token", response.data.token);
         navigate("/add");
       } else {
-        alert("If you don't have  account please signup");
+        alert("If you dont have  account please signup");
       }
     } catch (error) {
       console.log(error);
