@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import { Routes ,Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 import Home from "./components/Home";
 import AddBook from "./components/AddBook";
@@ -13,10 +13,11 @@ function App() {
   return (
     <React.Fragment>
       <header>
-         <Header/>
+        <Header />
       </header>
       <main>
         <Routes>
+
           <Route path="/"  element={<Home/>} exact/>
           <Route path="/add"  element={<AddBook/>} exact/>
           <Route path="/books"  element={<Books/>} exact/>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/auth"  element={<Auth/>} exact/>
           <Route path="/register"  element={<Register/>} exact/>
           <Route path="/login"  element={<Login/>} exact/>
+
         </Routes>
       </main>
     </React.Fragment>
