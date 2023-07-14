@@ -20,7 +20,7 @@ const Register = () => {
         username,
         password,
       });
-      console.log(response);
+      
       if (response.data.username === username) {
         setCookies("access-token", response.data.token);
         window.localStorage.setItem("EmPa token", response.data.token);
