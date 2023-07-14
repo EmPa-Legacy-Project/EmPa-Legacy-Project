@@ -21,13 +21,25 @@ const Login = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
-        username,
-        password,
-      });
-      setCookies("access-token", response.data.token);
-      window.localStorage.setItem("userID", response.data.userID);
-      navigate("/books");
+      const response = await axios
+        .post("http://localhost:5000/auth/login", {
+          username,
+          password,
+        })
+        .then(({ data }) => {
+          console.log(data);
+          if (data.token) {
+            //after login token returns
+            localStorage.setItem("token", data.token); //we are saving token to local storage
+            //if token returns navigate to profile
+            navigate("/add"); //******navitaging to page */
+          } else {
+            alert("If you have  account please signup");
+          }
+        });
+      // setCookies("access-token", response.data.token);
+      // window.localStorage.setItem("userID", response.data.userID);
+      // navigate("/books");
     } catch (error) {
       console.log(error);
     }
