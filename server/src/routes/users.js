@@ -7,21 +7,28 @@ const userRouter = express.Router();
 
 userRouter.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  const user = await UserModel.findOne({ username: req.body.username });
 
-  if (user) {
-    return res.send({ message: "User already exists!" });
+  console.log(username);
+
+  const user = await UserModel.findOne({ username: username });
+
+  if (!user) {
+    const hashPassword = await bcrypt.hash(password, 10);
+    const newUser = new UserModel({
+      username,
+      password: hashPassword,
+    });
+    await newUser.save();
+
+    const token = jwt.sign({ username }, "secret");
+
+    return res.json({
+      token: token,
+      message: "User registered successfully!",
+    });
+  } else {
+    return    res.json("User already exist");
   }
-
-  const hashPassword = await bcrypt.hash(password, 10);
-
-  const newUser = new UserModel({
-    username,
-    password: hashPassword,
-  });
-
-  await newUser.save();
-  res.json({ message: "User Registered Successfully!" });
 });
 
 userRouter.post("/login", async (req, res) => {
@@ -45,7 +52,7 @@ userRouter.post("/login", async (req, res) => {
 userRouter.post("/verify", async (req, res) => {
   if (!req.body.token) {
     res.send({ message: false });
-  }//decrypt and get back to the user id
+  } //decrypt and get back to the user id
   try {
     var payload = jwt.verify(req.body.token);
     if (payload) {
