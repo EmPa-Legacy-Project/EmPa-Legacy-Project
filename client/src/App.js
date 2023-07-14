@@ -7,6 +7,8 @@ import Books from "./components/Book/Books";
 import About from "./components/Book/About";
 import BookDetail from "./components/Book/BookDetail";
 import Auth from "./components/Book/auth";
+import Register from "./Register";
+import Login from "./LogIn";
 function App() {
   return (
     <React.Fragment>
@@ -21,6 +23,8 @@ function App() {
           <Route path="/about"  element={<About/>} exact/>
           <Route path="/books/:id"  element={<BookDetail/>} exact/>
           <Route path="/auth"  element={<Auth/>} exact/>
+          <Route path="/register"  element={<Register/>} exact/>
+          <Route path="/login"  element={<Login/>} exact/>
         </Routes>
       </main>
     </React.Fragment>
