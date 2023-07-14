@@ -27,7 +27,7 @@ userRouter.post("/register", async (req, res) => {
       message: "User registered successfully!",
     });
   } else {
-    return    res.json("User already exist");
+    return res.json("User already exist");
   }
 });
 
@@ -44,31 +44,31 @@ userRouter.post("/login", async (req, res) => {
   if (!isPasswordValid) {
     return res.json({ message: "Username or Password Is Incorrect!" });
   }
-  const token = jwt.sign({ id: user._id }, "secret");
+  const token = jwt.sign({ username }, "secret");
 
-  res.json({ token: token, userID: user._id });
+  res.json({ token: token, message: "User logged in successfully" });
 });
 
-userRouter.post("/verify", async (req, res) => {
-  if (!req.body.token) {
-    res.send({ message: false });
-  } //decrypt and get back to the user id
-  try {
-    var payload = jwt.verify(req.body.token);
-    if (payload) {
-      const user = await UserModel.findOne({ _id: payload.id });
-      if (user) {
-        var token = jwt.sign({ id: user._id });
-        res.send(user);
-      } else {
-        res.send("invalid token");
-      }
-    } else {
-      res.send("invalid token");
-    }
-  } catch (error) {
-    res.send("invalid token");
-  }
-});
+// userRouter.post("/verify", async (req, res) => {
+//   if (!req.body.token) {
+//     res.send({ message: false });
+//   } //decrypt and get back to the user id
+//   try {
+//     var payload = jwt.verify(req.body.token);
+//     if (payload) {
+//       const user = await UserModel.findOne({ _id: payload.id });
+//       if (user) {
+//         var token = jwt.sign({ id: user._id });
+//         res.send(user);
+//       } else {
+//         res.send("invalid token");
+//       }
+//     } else {
+//       res.send("invalid token");
+//     }
+//   } catch (error) {
+//     res.send("invalid token");
+//   }
+// });
 
 module.exports = userRouter;
