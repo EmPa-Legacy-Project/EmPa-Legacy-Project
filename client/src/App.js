@@ -7,6 +7,8 @@ import Books from "./components/Book/Books";
 import About from "./components/Book/About";
 import BookDetail from "./components/Book/BookDetail";
 import Auth from "./components/Book/auth";
+import Register from "./Register";
+import Login from "./LogIn";
 function App() {
   return (
     <React.Fragment>
@@ -15,13 +17,16 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Home />} exact />
-          <Route path="/add" element={<AddBook />} exact />
-          <Route path="/books" element={<Books />} exact />
-          <Route path="/about" element={<About />} exact />
-          <Route path="/books/:id" element={<BookDetail />} exact />
-          <Route path="/auth" element={<Auth />} exact />
-          
+
+          <Route path="/"  element={<Home/>} exact/>
+          <Route path="/add"  element={<AddBook/>} exact/>
+          <Route path="/books"  element={<Books/>} exact/>
+          <Route path="/about"  element={<About/>} exact/>
+          <Route path="/books/:id"  element={<BookDetail/>} exact/>
+          <Route path="/auth"  element={<Auth/>} exact/>
+          <Route path="/register"  element={<Register/>} exact/>
+          <Route path="/login"  element={<Login/>} exact/>
+
         </Routes>
       </main>
     </React.Fragment>
