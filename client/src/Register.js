@@ -27,7 +27,7 @@ const Register = () => {
         alert("Registration Completed! ");
         navigate("/add");
       } else {
-        alert("If you already have  account please login");
+        alert("If you already have an account please login");
         navigate("/Login");
       }
     } catch (error) {
