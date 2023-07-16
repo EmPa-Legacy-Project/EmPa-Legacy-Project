@@ -26,8 +26,7 @@ const Books = () => {
     }catch(error){
       console.log(error)
     }
-    
-  }
+}
   const deleteHandler = async(id) => {
     try{
       const confirmBox = window.confirm(
@@ -45,7 +44,7 @@ const Books = () => {
 
   useEffect(() => {
     fetchHandler().then((data) => setBooks(data.books));
-  }, []);
+  }, [fetchHandler()]);
 
   const Tittle = styled.h1`
     text-align: center;

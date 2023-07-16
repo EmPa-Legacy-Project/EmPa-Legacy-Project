@@ -15,6 +15,9 @@ function About() {
         </Typography>
         <Typography variant="h4" gutterBottom sx={{fontFamily:"fantasy"}} >
          that is created by Melpomeni and Ameneh
+         <br></br>
+         and updated by  <a href="https://github.com/panos-mantis"> Panagiotis Mantis </a>  and  <a href="https://github.com/guleremre">Emre Güler</a> 
+          
         </Typography>
       </Box>
     </div>
