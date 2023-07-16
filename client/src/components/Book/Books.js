@@ -44,7 +44,7 @@ const Books = () => {
 
   useEffect(() => {
     fetchHandler().then((data) => setBooks(data.books));
-  }, [fetchHandler()]);
+  }, []);
 
   const Tittle = styled.h1`
     text-align: center;
