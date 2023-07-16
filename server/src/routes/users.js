@@ -26,7 +26,7 @@ userRouter.post("/register", async (req, res) => {
       message: "User registered successfully!",
     });
   } else {
-    return res.json({ username:username,message:"User already exist"});
+    return res.json({ message:"User already exist"});
   }
 });
 
