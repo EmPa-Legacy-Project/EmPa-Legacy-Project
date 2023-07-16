@@ -8,7 +8,6 @@ const userRouter = express.Router();
 userRouter.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
-  console.log(username);
 
   const user = await UserModel.findOne({ username: username });
 
@@ -27,7 +26,7 @@ userRouter.post("/register", async (req, res) => {
       message: "User registered successfully!",
     });
   } else {
-    return res.json("User already exist");
+    return res.json({ message:"User already exist"});
   }
 });
 
@@ -46,7 +45,11 @@ userRouter.post("/login", async (req, res) => {
   }
   const token = jwt.sign({ username }, "secret");
 
-  res.json({ token: token, message: "User logged in successfully" });
+  res.json({
+    token: token,
+    userID: user._id,
+    message: "User logged in successfully",
+  });
 });
 
 // userRouter.post("/verify", async (req, res) => {
