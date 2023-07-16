@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, } from "react";
 import axios from "axios";
 import Form from "./components/Form";
 import styled from "@emotion/styled";
@@ -7,7 +7,7 @@ import "./App.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({token, setToken}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [_, setCookies] = useCookies(["access-token"]);
@@ -23,6 +23,8 @@ function Login() {
       if (response.data.token) {
         setCookies("access-token", response.data.token);
         window.localStorage.setItem("EmPa token", response.data.token);
+        setToken(response.data.token)
+        console.log(token)
         navigate("/add");
       } else {
         alert("If you dont have  account please signup");

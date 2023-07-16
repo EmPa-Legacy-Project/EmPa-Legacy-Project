@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Books from "./Book/Books";
 
 function Home() {
+  const [token, setToken] = useState("");
   const [showBtn, setShowBtn] = useState(true);
   const handleClick = () => {
     const token = localStorage.getItem("token");
@@ -27,7 +28,7 @@ function Home() {
             <Typography variant="h3">View All Books</Typography>
           </Button>
         ) : (
-          <Books />
+          <Books token={token} setToken={setToken}/>
         )}
       </Box>
     </div>

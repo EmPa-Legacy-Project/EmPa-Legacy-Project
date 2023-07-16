@@ -1,4 +1,6 @@
 const Book = require("../model/Book");
+const Users = require("../model/Users");
+const jwt = require('jsonwebtoken');
 
 const getAllBooks = async (req, res, next) => {
   // This route will provide all of the books
@@ -85,12 +87,61 @@ const deleteBook =async (req,res,next)=>{
     let books = await Book.find()
     return res.status(200).json({ message :"Product Successfully Delete", books:{books} });
   }
+}
+
+const addFavoriteBooks = async(req,res)=>{
+  const token = req.body.token
+  const id = req.params.id;
+
+  try {
+    let payload = jwt.verify(token, 'secret')
+    let book = await Book.findById(id)
+    let user = await Users.findOne({username:payload.username})
   
+    if(!user.favoriteBooks){
+       user.favoriteBooks=[book] 
+       user.save()
+    }else{
+      user.favoriteBooks=[...user.favoriteBooks , book] 
+      user.save()
+    }
+    return res.json({user})
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: 'Failed ' });
+  }
+}
+const removeFavoriteBooks = async(req,res)=>{
+  const token = req.body.token
+  const id = req.params.id;
+
+  try {
+    let payload = jwt.verify(token, 'secret')
+    let book = await Book.findById(id)
+    let user = await Users.findOne({username:payload.username})
+    
+    const deletedBook = await user.favoriteBooks.findOneAndDelete({_id:id})
+    console.log(deletedBook)
+    if(user.favoriteBooks){
+       user.favoriteBooks=[book] 
+       user.save()
+       return res.json({user})
+    }else{
+      user.favoriteBooks=[...user.favoriteBooks , book] 
+      user.save()
+    }
+    return res.json({user})
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: 'Failed ' });
+  }
 }
 
 exports.getAllBooks = getAllBooks;
 exports.addBook = addBook;
 exports.getById = getById;
-
 exports.updateBook = updateBook;
-exports.deleteBook =deleteBook
+exports.deleteBook =deleteBook;
+
+exports.addFavoriteBooks =addFavoriteBooks;
+exports.removeFavoriteBooks =removeFavoriteBooks;
