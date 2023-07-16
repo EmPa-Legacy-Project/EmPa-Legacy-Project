@@ -29,7 +29,7 @@ const Register = () => {
         navigate("/add");
       } else {
         alert("If you already have an account please login");
-        //navigate("/Login");
+        navigate("/Login");
       }
     } catch (error) {
       console.log(error);
