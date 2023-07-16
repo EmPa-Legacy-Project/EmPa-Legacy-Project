@@ -41,7 +41,7 @@ function Header() {
                   <Tab LinkComponent={NavLink} to="register" label="Register" />
                 )}
                 {isOnRegisterScreen && (
-                  <Tab LinkComponent={NavLink} to="login" label="Login" />
+                  <Tab LinkComponent={NavLink} to="login" label="Log in" />
                 )}
               </>
             ) : (
