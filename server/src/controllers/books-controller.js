@@ -81,8 +81,11 @@ const deleteBook =async (req,res,next)=>{
   }
   if (!book) {
     return res.status(404).json({ message: "Unable To Delete By this ID" });
+  }else{
+    let books = await Book.find()
+    return res.status(200).json({ message :"Product Successfully Delete", books:{books} });
   }
-  return res.status(200).json({ message :"Product Successfully Delete" });
+  
 }
 
 exports.getAllBooks = getAllBooks;

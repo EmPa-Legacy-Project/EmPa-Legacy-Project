@@ -1,20 +1,30 @@
-import React from "react";
+/* import React from "react";
 import { Button } from "@mui/material";
 import "./Book.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 import axios from "axios";
-function Book(props) {
-  const navigate = useNavigate();
-  const { _id, name, author, description, price, image } = props.book;
+
+function Book(props , setBooks , handleDelete) {
+  
+  
+  const { _id, name, author, description, price, image,available} = props.book;
+
+  const token = localStorage.getItem("token")
+  console.log(available)
+  console.log(token)
+  
 
   const deleteHandler = async (req, res) => {
-    console.log(_id);
-    await axios
+    const confirmBox = window.confirm(
+      "Do you really want to delete this book?"
+    )
+    if (confirmBox === true) {
+      await axios
       .delete(`http://localhost:5000/books/${_id}`)
-
-      .then((res) => res.data)
-      .then(() => navigate("http://localhost:5000"))
-      .then(() => navigate("/books"));
+      .then((res) => setBooks(res.data.books));
+     
+    }
+   
   };
 
   return (
@@ -25,10 +35,11 @@ function Book(props) {
       <p>{description}</p>
 
       <h3>Rs: {price} $</h3>
+      {token?(<p>Available: {String(available)}</p>):("")}
       <Button LinkComponent={Link} to={`/books/${_id}`} sx={{ mt: "auto" }}>
         Update
       </Button>
-      <Button onClick={deleteHandler} sx={{ mt: "auto" }}>
+      <Button onClick={handleDelete} sx={{ mt: "auto" }}>
         Delete
       </Button>
     </div>
@@ -36,3 +47,4 @@ function Book(props) {
 }
 
 export default Book;
+ */

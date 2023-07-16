@@ -128,10 +128,11 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  
 }
 
 li {
-  border: 1px solid black;
+  
   padding: 10px;
   margin-bottom: 10px;
 }

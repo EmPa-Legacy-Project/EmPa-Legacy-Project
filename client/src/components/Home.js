@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import Books from "./Book/Books";
 
 function Home() {
-  const handleClick = ()=>{
-    const token = localStorage.getItem("userID")
-    if(!token){
-      alert("Please login first")
-    }else{
-      console.log(token)
-    }
-  }
+  const [showBtn, setShowBtn] = useState(true);
+  const handleClick = () => {
+    const token = localStorage.getItem("token");
+    setShowBtn(!showBtn);
+    console.log(token);
+  };
 
   return (
     <div>
@@ -19,13 +17,18 @@ function Home() {
         {/* <Typography sx={{fontFamily:"fantasy"}} variant="h2" gutterBottom>
           This is a CRUD Application
         </Typography> */}
-       
-        <Button variant='contained' sx={{marginTop:15,background:'orangered'}} onClick={handleClick}>
-        <Typography variant="h3"  >
-          View All Books
-        </Typography>
 
-        </Button>
+        {showBtn ? (
+          <Button
+            variant="contained"
+            sx={{ marginTop: 15, background: "orangered" }}
+            onClick={handleClick}
+          >
+            <Typography variant="h3">View All Books</Typography>
+          </Button>
+        ) : (
+          <Books />
+        )}
       </Box>
     </div>
   );
