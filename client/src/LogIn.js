@@ -37,7 +37,7 @@ function Login() {
   `;
   return (
     <>
-      <Tittle>LogIn</Tittle>
+      <Tittle>Login</Tittle>
       <Form
         username={username}
         setUsername={setUsername}

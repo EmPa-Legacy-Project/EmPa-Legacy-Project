@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+const isOnRegisterScreen = true;
+const isOnLoginScreen = true;
 function Header() {
   const [value, setValue] = useState();
   const [cookies, setCookies] = useCookies(["access-token"]);
@@ -13,7 +15,7 @@ function Header() {
   const logout = () => {
     setCookies("access-token", "");
     window.localStorage.removeItem("userID");
-    navigate("/auth");
+    navigate("/");
   };
 
   return (
@@ -34,7 +36,14 @@ function Header() {
           >
             <Tab LinkComponent={NavLink} to="about" label="About Us" />
             {!cookies["access-token"] ? (
-              <Tab LinkComponent={NavLink} to="auth" label="Login/Register" />
+              <>
+                {isOnLoginScreen && (
+                  <Tab LinkComponent={NavLink} to="register" label="Register" />
+                )}
+                {isOnRegisterScreen && (
+                  <Tab LinkComponent={NavLink} to="login" label="Login" />
+                )}
+              </>
             ) : (
               <>
                 <Tab LinkComponent={NavLink} to="add" label="Add product" />
