@@ -10,7 +10,8 @@ router.post("/",booksController.addBook)
 router.get("/:id",booksController.getById)
 router.put("/:id",booksController.updateBook)
 router.delete("/:id",booksController.deleteBook)
-
+router.delete("/user/:id",booksController.deleteBook)
+router.post("/:id",booksController.addFavoriteBooks)
 
 
 module.exports =router
