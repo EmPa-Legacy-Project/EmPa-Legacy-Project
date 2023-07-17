@@ -46,8 +46,9 @@ function Header() {
               </>
             ) : (
               <>
-                <Tab LinkComponent={NavLink} to="add" label="Add product" />
                 <Tab LinkComponent={NavLink} to="books" label="Books" />
+                <Tab LinkComponent={NavLink} to="add" label="Add product" />
+                <Tab LinkComponent={NavLink} to="profile" label="profile" />
                 <Button onClick={logout}>Logout</Button>
               </>
             )}
