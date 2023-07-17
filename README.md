@@ -24,5 +24,6 @@ Then you can start your backend server and typing in your terminal "npm start" t
 This application is created by Melpomeni and Ameneh and updated by Panagiotis Mantis & Emre Güler
 
   Emre Guler: https://github.com/guleremre
+  
   Panagiotis Mantis: https://github.com/panos-mantis
 
