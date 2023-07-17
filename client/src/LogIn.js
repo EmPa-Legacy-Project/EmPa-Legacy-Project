@@ -23,12 +23,10 @@ function Login({ token, setToken }) {
       if (response.data.token) {
         setCookies("access-token", response.data.token);
         window.localStorage.setItem("EmPa token", response.data.token);
-        setToken(response.data.token);
-        console.log(token);
-        navigate("/add");
+        console.log(token)
+        navigate(-1);
       } else {
-        alert("If you dont have  account please signup");
-        navigate("/register");
+        alert("If you don't have  account please signup");
       }
     } catch (error) {
       console.log(error);

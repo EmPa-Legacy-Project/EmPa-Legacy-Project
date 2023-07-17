@@ -4,11 +4,15 @@ import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 import "./Book.css";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+
 const URL = "http://localhost:5000/books";
 
 const token = localStorage.getItem("EmPa token");
 
 const Books = () => {
+  const navigate = useNavigate();
+
   const [cookies, setCookies] = useCookies(["access-token"]);
   const fetchHandler = async () => {
     try {
@@ -17,7 +21,7 @@ const Books = () => {
       console.log(error);
     }
   };
-
+  
   const deleteBook = async (id) => {
     try {
       await axios
@@ -70,6 +74,9 @@ const Books = () => {
                   LinkComponent={book.Link}
                   to={`/books/${book._id}`}
                   sx={{ mt: "auto" }}
+                  onClick={() => {
+                    navigate(`/books/${book._id}`)
+                  }}
                 >
                   Update
                 </Button>
