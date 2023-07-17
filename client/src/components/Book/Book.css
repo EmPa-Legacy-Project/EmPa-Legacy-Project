@@ -9,24 +9,23 @@ li {
   padding: 10px;
   width: 250px;
   max-width: 250px;
-  max-height: 400px;
-  list-style-type: none
+  list-style-type: none;
 }
 .card {
   margin: auto;
   padding: 5px;
   width: 100%;
-  height: 500px;
+  height: 600px;
   box-shadow: 5px 5px 10px #ccc;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .card > img {
-  width: 100%;
-  height: 50%;
-  object-fit:fill ;
+  width: 95%;
+  object-fit: fill;
 }
+
 .card article {
   padding: 5px;
 }
@@ -36,6 +35,12 @@ li {
 }
 .card p {
   padding: 3px;
+  overflow: hidden;
+}
+.crudButton {
+  display: inherit;
+  margin: auto;
+  max-height: 30px;
 }
 .App {
   text-align: center;
@@ -166,7 +171,6 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
- 
 }
 
 /* li {
