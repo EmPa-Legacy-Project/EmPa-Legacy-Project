@@ -13,7 +13,26 @@ const token = localStorage.getItem("EmPa token");
 const Books = () => {
   const navigate = useNavigate();
 
+
+  const handleAddFavorite = async(id)=>{
+    console.log(token)
+    console.log(id)
+    try {
+        const response = await axios.post(`http://localhost:5000/user/${id}`, {
+          token:token
+        })
+        console.log(response)
+        
+
+    } catch (error) {
+      console.log(error);
+    }
+    
+    setStar(!star)
+  }
+
   const [cookies, setCookies] = useCookies(["access-token"]);
+  const [star, setStar] = useState(false);
   const fetchHandler = async () => {
     try {
       return await axios.get(URL).then((res) => res.data);
@@ -21,7 +40,7 @@ const Books = () => {
       console.log(error);
     }
   };
-  
+
   const deleteBook = async (id) => {
     try {
       await axios
@@ -87,6 +106,14 @@ const Books = () => {
                   sx={{ mt: "auto" }}
                 >
                   Delete
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleAddFavorite(book._id);
+                  }}
+                
+                >
+                  Add to Favorites
                 </Button>
               </div>
             </li>
