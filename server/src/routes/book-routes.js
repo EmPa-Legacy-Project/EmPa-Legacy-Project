@@ -4,14 +4,14 @@ const Book = require("../model/Book");
 const booksController=require("../controllers/books-controller")
 
 
-router.delete("/user/:id",booksController.deleteBook)
+
 router.get("/",booksController.getAllBooks);
 router.post("/",booksController.addBook)
 router.get("/:id",booksController.getById)
 router.put("/:id",booksController.updateBook)
 router.delete("/:id",booksController.deleteBook)
 
-router.post("/:id",booksController.addFavoriteBooks)
+
 
 
 module.exports =router
