@@ -28,11 +28,11 @@ const Books = () => {
       console.log(error);
     }
     
-    setStar(!star)
+    
   }
 
   const [cookies, setCookies] = useCookies(["access-token"]);
-  const [star, setStar] = useState(false);
+  
   const fetchHandler = async () => {
     try {
       return await axios.get(URL).then((res) => res.data);
@@ -40,6 +40,7 @@ const Books = () => {
       console.log(error);
     }
   };
+  
 
   const deleteBook = async (id) => {
     try {
@@ -113,6 +114,14 @@ const Books = () => {
                     sx={{ mt: "auto" }}
                   >
                     Delete
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      handleAddFavorite(book._id);
+                    }}
+                    sx={{ mt: "auto" }}
+                  >
+                    Favorite
                   </Button>
                 </div>
               </div>
