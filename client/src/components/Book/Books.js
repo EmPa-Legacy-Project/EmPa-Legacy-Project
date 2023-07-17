@@ -88,33 +88,33 @@ const Books = () => {
                 <p>{book.description}</p>
 
                 <h3>Rs: {book.price} $</h3>
-                {cookies["access-token"] ? <p>Available: {String(book.available)}</p> : ""}
-                <Button
-                  LinkComponent={book.Link}
-                  to={`/books/${book._id}`}
-                  sx={{ mt: "auto" }}
-                  onClick={() => {
-                    navigate(`/books/${book._id}`)
-                  }}
-                >
-                  Update
-                </Button>
-                <Button
-                  onClick={() => {
-                    deleteHandler(book._id);
-                  }}
-                  sx={{ mt: "auto" }}
-                >
-                  Delete
-                </Button>
-                <Button
-                  onClick={() => {
-                    handleAddFavorite(book._id);
-                  }}
-                
-                >
-                  Add to Favorites
-                </Button>
+
+                {cookies["access-token"] ? (
+                  <p>Available: {String(book.available)}</p>
+                ) : (
+                  ""
+                )}
+                <div className="crudButton">
+                  <Button
+                    LinkComponent={book.Link}
+                    to={`/books/${book._id}`}
+                    sx={{ mt: "auto" }}
+                    onClick={() => {
+                      navigate(`/books/${book._id}`);
+                    }}
+                  >
+                    Update
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      deleteHandler(book._id);
+                    }}
+                    sx={{ mt: "auto" }}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
             </li>
           ))}
