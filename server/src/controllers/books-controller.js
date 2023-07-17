@@ -111,29 +111,34 @@ const addFavoriteBooks = async(req,res)=>{
     res.status(500).json({ error: 'Failed ' });
   }
 }
+
 const removeFavoriteBooks = async(req,res)=>{
   const token = req.body.token
   const id = req.params.id;
-
+  
   try {
     let payload = jwt.verify(token, 'secret')
     let book = await Book.findById(id)
     let user = await Users.findOne({username:payload.username})
-    
-    const deletedBook = await user.favoriteBooks.findOneAndDelete({_id:id})
-    console.log(deletedBook)
-    if(user.favoriteBooks){
-       user.favoriteBooks=[book] 
-       user.save()
-       return res.json({user})
+  
+    if(user.favoriteBooks.length>0){
+      for(let i =0 ; i < user.favoriteBooks.length ; i++){
+        console.log(user.favoriteBooks[i]._id.toHexString()) 
+          console.log(id)
+        if(id === user.favoriteBooks[i]._id.toHexString()){
+          user.favoriteBooks.splice(i,1)
+          user.save()
+         return res.json({user})
+        }
+        
+      }
     }else{
-      user.favoriteBooks=[...user.favoriteBooks , book] 
-      user.save()
+      return res.json({message:"Failed to find book"})
     }
-    return res.json({user})
+    
   } catch (error) {
     console.log(error)
-    res.status(500).json({ error: 'Failed ' });
+    res.status(500).json({ error:error });
   }
 }
 

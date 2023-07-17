@@ -52,26 +52,27 @@ userRouter.post("/login", async (req, res) => {
   });
 });
 
-// userRouter.post("/verify", async (req, res) => {
-//   if (!req.body.token) {
-//     res.send({ message: false });
-//   } //decrypt and get back to the user id
-//   try {
-//     var payload = jwt.verify(req.body.token);
-//     if (payload) {
-//       const user = await UserModel.findOne({ _id: payload.id });
-//       if (user) {
-//         var token = jwt.sign({ id: user._id });
-//         res.send(user);
-//       } else {
-//         res.send("invalid token");
-//       }
-//     } else {
-//       res.send("invalid token");
-//     }
-//   } catch (error) {
-//     res.send("invalid token");
-//   }
-// });
+ userRouter.post("/verify", async (req, res) => {
+   if (!req.body.token) {
+     res.send({ message: false });
+   } 
+   try {
+     var payload = jwt.verify(req.body.token, "secret");
+     
+     if (payload) {
+       const user = await UserModel.findOne({username: payload.username });
+       
+       if (user) {
+         res.send(user);
+       } else {
+         res.send("invalid token");
+       }
+     } else {
+       res.send("invalid token");
+     }
+   } catch (error) {
+     res.send("invalid token");
+   }
+ });
 
 module.exports = userRouter;
