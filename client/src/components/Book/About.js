@@ -18,7 +18,7 @@ function About() {
           that is created by Melpomeni and Ameneh
         </Typography>
         <Typography variant="h4" gutterBottom sx={{ fontFamily: "fantasy" }}>
-          and updated by
+           and updated by
         </Typography>
         <Typography variant="h4" sx={{ fontFamily: "fantasy" }}>
           <Link
