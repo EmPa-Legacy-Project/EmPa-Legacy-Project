@@ -9,6 +9,7 @@ import BookDetail from "./components/Book/BookDetail";
 import Auth from "./components/Book/auth";
 import Register from "./Register";
 import Login from "./LogIn";
+import Profile from "./components/Book/Profile";
 function App() {
   return (
     <React.Fragment>
@@ -26,7 +27,8 @@ function App() {
           <Route path="/auth"  element={<Auth/>} exact/>
           <Route path="/register"  element={<Register/>} exact/>
           <Route path="/login"  element={<Login/>} exact/>
-
+          <Route path="/profile"  element={<Profile/>} exact/>
+           
         </Routes>
       </main>
     </React.Fragment>

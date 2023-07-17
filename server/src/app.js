@@ -4,12 +4,14 @@ const mongoose = require("mongoose");
 const router = require("./routes/book-routes")
 const cors = require('cors')
 const userRouter =require("./routes/users")
+const favoriteRouter =require("./routes/favorite")
 
 // Middlewares
 app.use(express.json())
 app.use(cors())
 app.use("/books",router)
 app.use("/auth",userRouter)
+app.use("/user",favoriteRouter)
 
 
 
