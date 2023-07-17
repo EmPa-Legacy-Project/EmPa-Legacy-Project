@@ -1,7 +1,7 @@
 ul {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-content: flex-start;
   flex-wrap: wrap;
 }
@@ -10,6 +10,7 @@ li {
   width: 250px;
   max-width: 250px;
   list-style-type: none;
+  
 }
 .card {
   margin: auto;
@@ -21,17 +22,14 @@ li {
   flex-direction: column;
   justify-content: center;
 }
-
 .card > img:hover {
   width: 97%;
   object-fit: fill;
   margin: auto;
 }
-
 .card article {
   padding: 5px;
 }
-
 .card h3 {
   padding: 4px;
 }
@@ -47,7 +45,8 @@ li {
 }
 .crudButton {
   margin: auto;
-  max-height: 25px;
+  max-height: 25px;align-content: flex-end;
+  
 }
 .App {
   text-align: center;
@@ -65,7 +64,7 @@ li {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #98afdb;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
