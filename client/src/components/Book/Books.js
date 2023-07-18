@@ -6,6 +6,9 @@ import "./Book.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
+
 const URL = "http://localhost:5000/books";
 
 const token = localStorage.getItem("EmPa token");
@@ -13,26 +16,20 @@ const token = localStorage.getItem("EmPa token");
 const Books = () => {
   const navigate = useNavigate();
 
-
-  const handleAddFavorite = async(id)=>{
-    console.log(token)
-    console.log(id)
+  const handleAddFavorite = async (id) => {
+    
     try {
-        const response = await axios.post(`http://localhost:5000/user/${id}`, {
-          token:token
-        })
-        console.log(response)
-        
-
+      const response = await axios.post(`http://localhost:5000/user/${id}`, {
+        token: token,
+      });
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
-    
-    
-  }
+  };
 
   const [cookies, setCookies] = useCookies(["access-token"]);
-  
+
   const fetchHandler = async () => {
     try {
       return await axios.get(URL).then((res) => res.data);
@@ -40,7 +37,6 @@ const Books = () => {
       console.log(error);
     }
   };
-  
 
   const deleteBook = async (id) => {
     try {
@@ -67,14 +63,16 @@ const Books = () => {
 
   useEffect(() => {
     fetchHandler().then((data) => setBooks(data.books));
+    
   }, []);
 
   const Tittle = styled.h1`
     text-align: center;
     margin: 20px;
   `;
+  const [isIconClicked, setIsIconClicked] = useState(false);
 
-  console.log(books);
+ 
   return (
     <div>
       <Tittle>Here is a list of all the books</Tittle>
@@ -115,14 +113,17 @@ const Books = () => {
                   >
                     Delete
                   </Button>
-                  <Button
+
+                  <FavoriteSharpIcon
+                    color="danger"
+                    size="sm"
+                    variant="plain"
+                    className={isIconClicked ? "clicked" : ""}
                     onClick={() => {
                       handleAddFavorite(book._id);
+                      setIsIconClicked(true)
                     }}
-                    sx={{ mt: "auto" }}
-                  >
-                    Favorite
-                  </Button>
+                  />
                 </div>
               </div>
             </li>

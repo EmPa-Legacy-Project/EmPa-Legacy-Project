@@ -20,9 +20,8 @@ const Register = () => {
         username,
         password,
       });
-      console.log(username,1)
-      console.log(response.data.message)
-      if (response.data.message==="User registered successfully!") {///not working fix
+      if (response.data.message === "User registered successfully!") {
+        ///not working fix
         setCookies("access-token", response.data.token);
         window.localStorage.setItem("EmPa token", response.data.token);
         alert("Registration Completed! ");
@@ -43,7 +42,7 @@ const Register = () => {
 
   return (
     <>
-      <Tittle>Register</Tittle>
+      
       <Form
         username={username}
         setUsername={setUsername}

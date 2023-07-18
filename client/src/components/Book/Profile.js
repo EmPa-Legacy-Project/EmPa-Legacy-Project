@@ -68,7 +68,7 @@ const Profile = () => {
                     }}
                     sx={{ mt: "auto" }}
                   >
-                    Remove it from your list
+                    Remove it from Favorite 
                   </Button>
                 
               </div>
