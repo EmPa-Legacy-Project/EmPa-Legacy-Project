@@ -38,7 +38,7 @@ function Login({ token, setToken }) {
   `;
   return (
     <>
-      <Tittle>Login</Tittle>
+      
       <Form
         username={username}
         setUsername={setUsername}

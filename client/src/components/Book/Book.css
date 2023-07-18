@@ -10,7 +10,6 @@ li {
   width: 250px;
   max-width: 250px;
   list-style-type: none;
-  
 }
 .card {
   margin: auto;
@@ -26,6 +25,12 @@ li {
   width: 97%;
   object-fit: fill;
   margin: auto;
+}
+.card > img {
+  width: 97%;
+  object-fit: fill;
+  margin: auto;
+  max-height: 360px;
 }
 .card article {
   padding: 5px;
@@ -44,9 +49,9 @@ li {
   overflow: visible;
 }
 .crudButton {
+  display: inline-block;
   margin: auto;
-  max-height: 25px;align-content: flex-end;
-  
+  max-height: 25px;
 }
 .App {
   text-align: center;
@@ -107,6 +112,9 @@ body {
   height: 100vh;
   background-color: #f2f2f2;
 }
+.clicked {
+  color: red;
+}
 
 .auth-container {
   display: flex;
@@ -120,7 +128,9 @@ body {
   margin: 20px;
   width: 400px;
 }
-
+.clicked {
+  color: red;
+}
 .form-group {
   display: flex;
   flex-direction: column;
